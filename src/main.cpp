@@ -535,14 +535,14 @@ void exportHTML()
 */
 
 void saveResult(std::vector<nodeInfo> &nodes)
-{
+{       
     INIReader ini;
     std::string data;
 
     ini.SetCurrentSection("Basic");
     ini.Set("Tester", "Stair Speedtest Reborn " VERSION);
     ini.Set("GenerationTime", getTime(3));
-
+    
     for(nodeInfo &x : nodes)
     {
         ini.SetCurrentSection(x.group + "^" + x.remarks);

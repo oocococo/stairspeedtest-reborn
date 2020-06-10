@@ -1,0 +1,12 @@
+results/*
+CMakeFiles/*
+build/*
+logs/*
+tools/*
+.vscode/*
+stairspeedtest
+pref.ini
+Makefile
+config.json
+CMakeCache.txt
+cmake_install.cmake

@@ -58,6 +58,7 @@ struct nodeInfo
     std::string server;
     int port = 0;
     std::string proxyStr;
+    std::string yamlnode;
     long long rawSpeed[20] = {};
     long long totalRecvBytes = 0;
     int duration = 0;

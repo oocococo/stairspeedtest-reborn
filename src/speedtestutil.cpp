@@ -1,6 +1,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 #include <time.h>
 
 #define PCRE2_CODE_UNIT_WIDTH 8
@@ -1045,7 +1046,7 @@ void explodeClash(Node yamlnode, const std::string &custom_port, std::vector<nod
                     case "obfs"_hash:
                         plugin = "simple-obfs";
                         if(singleproxy["plugin-opts"].IsDefined())
-                        {
+                        {                            
                             singleproxy["plugin-opts"]["mode"] >>= pluginopts_mode;
                             singleproxy["plugin-opts"]["host"] >>= pluginopts_host;
                         }
@@ -1155,7 +1156,7 @@ void explodeClash(Node yamlnode, const std::string &custom_port, std::vector<nod
         default:
             continue;
         }
-
+        node.yamlnode=YAML::Dump(singleproxy);
         node.group = group;
         node.remarks = ps;
         node.server = server;

@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <chrono>
-
+#include <iostream>
+#include <fstream>
 #include <pngwriter.h>
 #include <zlib.h>
 #include <zconf.h>
@@ -315,6 +316,25 @@ std::string exportRender(std::string resultpath, std::vector<nodeInfo> &nodes, b
     total_line = node_count + 4;
     total_height = height_line * total_line;
     std::sort(nodes.begin(), nodes.end(), comparer); //sort by export_sort_method
+    
+    //export clash list
+    std::string curtime = getTime(1);
+    std::string clash_provider = "results" PATH_SLASH + curtime + ".yaml"; 
+    std::ofstream fout(clash_provider);
+    YAML::Emitter out;
+    out << YAML::BeginMap;
+    out << YAML::Key << "proxies";
+    out << YAML::Value << YAML::BeginSeq;
+    for(nodeInfo &x : nodes)
+    {
+        out<<YAML::Load(x.yamlnode);
+        //std::cout<<x.yamlnode<<std::endl;
+    }
+    out<< YAML::EndSeq;
+    //std::cout<<out.c_str()<<std::endl;
+    fout<<out.c_str()<<std::endl;
+    fout.close();
+    
 
     //add title line into the list
     node.group = "Group";
